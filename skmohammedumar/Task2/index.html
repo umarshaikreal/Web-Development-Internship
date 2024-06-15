@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightbox-Enabled Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery-bundle.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.2s linear;
+        }
+        body {
+            background: linear-gradient(135deg, #432c2c 30%, #1a1a1a 100%);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            font-size: 50px;
+            margin: 20px 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 90%;
+            margin: 0 auto;
+        }
+        .gallery a {
+            height: 200px;
+            width: 300px;
+            margin: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery a img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+        }
+        .gallery a img:hover {
+            transform: scale(1.1);
+        }
+        .gallery a::after {
+            content: attr(data-caption);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery a:hover::after {
+            opacity: 1;
+        }
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .gallery a {
+                width: 45%;
+            }
+        }
+        @media (max-width: 768px) {
+            .gallery a {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Nature Gallery</h1>
+    <div class="gallery" id="lightgallery">
+        <a href="pics/1.jpg" data-caption="Beautiful Landscape"><img src="gallary1.jpg" alt="Beautiful Landscape"></a>
+        <a href="pics/2.jpg" data-caption="Majestic Mountains"><img src="gallery2.jpg" alt="Majestic Mountains"></a>
+        <a href="pics/3.jpg" data-caption="Serene Lake"><img src="gallery3.jpg" alt="Serene Lake"></a>
+        <a href="pics/4.jpg" data-caption="Forest Pathway"><img src="gallery4.png" alt="Forest Pathway"></a>
+        <a href="pics/5.jpg" data-caption="Sunset Over the Hills"><img src="galler5.jpg" alt="Sunset Over the Hills"></a>
+        <a href="pics/6.jpg" data-caption="Rolling Fields"><img src="gallery6.jpg" alt="Rolling Fields"></a>
+        <a href="pics/7.jpg" data-caption="Waterfalls"><img src="gallery7.jpg" alt="Waterfalls"></a>
+        <a href="pics/8.jpg" data-caption="Desert Dunes"><img src="gallery8.webp" alt="Desert Dunes"></a>
+        <a href="pics/9.jpg" data-caption="Ocean Waves"><img src="gallery9.webp" alt="Ocean Waves"></a>
+        <a href="pics/10.jpg" data-caption="Autumn Forest"><img src="hgalary10.avif" alt="Autumn Forest"></a>
+        <a href="pics/11.jpg" data-caption="Night Sky"><img src="gallery11.jpg" alt="Night Sky"></a>
+    </div>
+
+    <!-- LightGallery Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/fullscreen/lg-fullscreen.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            lightGallery(document.getElementById('lightgallery'), {
+                plugins: [lgThumbnail, lgZoom, lgFullscreen],
+                thumbnail: true,
+                zoom: true,
+                fullScreen: true,
+                selector: 'a'
+            });
+        });
+    </script>
+</body>
+</html>
+
