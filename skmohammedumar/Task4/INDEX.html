@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Enrollment Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #6E33FF, #8C73FF, #E8C3FF);
+        background-size: 200% 200%;
+        animation: gradientAnimation 10s ease infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    form {
+        width: 100%;
+        max-width: 500px;
+        margin: 20px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        position: relative;
+    }
+    h1 {
+        margin: 0;
+        padding-bottom: 20px;
+        color: #333;
+        font-size: 24px;
+        border-bottom: 2px solid #ccc;
+    }
+    input[type="text"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #6E33FF;
+        outline: none;
+        box-shadow: 0 0 8px rgba(110, 51, 255, 0.3);
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #FF6363, #FF8C33);
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+    input[type="submit"]:hover {
+        transform: scale(1.05);
+    }
+    input[type="submit"]:active {
+        transform: scale(0.95);
+    }
+    .error {
+        color: red;
+        font-size: 12px;
+    }
+    #message {
+        display: none;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    #message.success {
+        background-color: #4CAF50;
+        color: white;
+    }
+    #message.invalid {
+        background-color: #FF6347;
+        color: white;
+    }
+</style>
+</head>
+<body>
+
+<form id="enrollmentForm" onsubmit="return handleSubmit()">
+    <h1>Student Enrollment Form</h1>
+
+    <label for="studentName">Name:</label>
+    <input type="text" id="studentName" name="studentName" aria-label="Student Name">
+    <span id="nameError" class="error"></span>
+
+    <label for="rollNumber">Roll Number:</label>
+    <input type="text" id="rollNumber" name="rollNumber" aria-label="Roll Number">
+    <span id="rollNumberError" class="error"></span>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" aria-label="Email">
+    <span id="emailError" class="error"></span>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" aria-label="Phone Number">
+    <span id="phoneError" class="error"></span>
+
+    <label for="course">Course Selection:</label>
+    <select id="course" name="course" aria-label="Course Selection">
+        <option value="">Select Course</option>
+        <option value="Web Development">Web Development</option>
+        <option value="App Development">App Development</option>
+        <option value="Data Analysis">Data Analysis</option>
+        <option value="Machine Learning">Machine Learning</option>
+        <option value="Cyber Security">Cyber Security</option>
+        <option value="Data Science">Data Science</option>
+    </select>
+    <span id="courseError" class="error"></span>
+
+    <label for="collegeName">College Name:</label>
+    <input type="text" id="collegeName" name="collegeName" aria-label="College Name">
+    <span id="collegeError" class="error"></span>
+
+    <label for="comments">Additional Comments:</label>
+    <textarea id="comments" name="comments" rows="4" cols="50" aria-label="Additional Comments"></textarea>
+
+    <input type="submit" value="Submit">
+
+    <div id="message"></div>
+</form>
+
+<script>
+function handleSubmit() {
+    var isValid = validateForm();
+    var message = document.getElementById("message");
+
+    if (isValid) {
+        message.textContent = "You have successfully enrolled!";
+        message.className = "success";
+    } else {
+        message.textContent = "Please correct the errors and submit again.";
+        message.className = "invalid";
+    }
+
+    message.style.display = "block";
+
+    setTimeout(function() {
+        message.style.display = "none";
+    }, 5000);
+
+    return false; // Prevent actual form submission for demonstration purposes
+}
+
+function validateForm() {
+    var name = document.getElementById("studentName").value;
+    var rollNumber = document.getElementById("rollNumber").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phoneNumber").value;
+    var course = document.getElementById("course").value;
+    var collegeName = document.getElementById("collegeName").value;
+
+    var nameError = document.getElementById("nameError");
+    var rollNumberError = document.getElementById("rollNumberError");
+    var emailError = document.getElementById("emailError");
+    var phoneError = document.getElementById("phoneError");
+    var courseError = document.getElementById("courseError");
+    var collegeError = document.getElementById("collegeError");
+
+    var isValid = true;
+
+    if (name === "") {
+        nameError.textContent = "Name is required";
+        isValid = false;
+    } else {
+        nameError.textContent = "";
+    }
+
+    if (rollNumber === "") {
+        rollNumberError.textContent = "Roll number is required";
+        isValid = false;
+    } else {
+        rollNumberError.textContent = "";
+    }
+
+    if (email === "") {
+        emailError.textContent = "Email is required";
+        isValid = false;
+    } else if (!validateEmail(email)) {
+        emailError.textContent = "Invalid email format";
+        isValid = false;
+    } else {
+        emailError.textContent = "";
+    }
+
+    if (phone === "") {
+        phoneError.textContent = "Phone number is required";
+        isValid = false;
+    } else if (!validatePhone(phone)) {
+        phoneError.textContent = "Invalid phone number format";
+        isValid = false;
+    } else {
+        phoneError.textContent = "";
+    }
+
+    if (course === "") {
+        courseError.textContent = "Course selection is required";
+        isValid = false;
+    } else {
+        courseError.textContent = "";
+    }
+
+    if (collegeName === "") {
+        collegeError.textContent = "College name is required";
+        isValid = false;
+    } else {
+        collegeError.textContent = "";
+    }
+
+    return isValid;
+}
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
+function validatePhone(phone) {
+    var re = /^\d{10}$/;
+    return re.test(phone);
+}
+</script>
+
+</body>
+</html>
