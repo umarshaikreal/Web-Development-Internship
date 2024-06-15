@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSExperience</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="CSExperience Logo">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Features</a>
+            <a href="#">Testimonials</a>
+            <a href="#">Contact Us</a>
+        </nav>
+    </header>
+    <div class="hero">
+        <h1>Empowering Students with Real-World Software Development Experience</h1>
+        <button>Sign Up Now</button>
+    </div>
+    <div class="about">
+        <p>CSExperience is an online platform offering internships that provide students with hands-on experience in real-world projects. Collaborate with industry experts and enhance your skills and employability through our comprehensive programs.</p>
+    </div>
+    <div class="features">
+        <div class="feature">
+            <img src="internship.jpg" alt="Diverse Internship Opportunities">
+            <h3>Diverse Internship Opportunities</h3>
+            <p>Explore a wide range of fields from web development to data analysis with our internships.</p>
+        </div>
+        <div class="feature">
+            <img src="feature2.png" alt="Hands-on Learning Experience">
+            <h3>Hands-on Learning Experience</h3>
+            <p>Gain practical skills through project-based learning and industry-relevant tasks.</p>
+        </div>
+        <div class="feature">
+            <img src="feature3.webp" alt="Flexible Internship Durations">
+            <h3>Flexible Internship Durations</h3>
+            <p>Complete your internship in as little as four weeks, tailored to your schedule.</p>
+        </div>
+        <div class="feature">
+            <img src="feature4.jpg" alt="Certification and Recognition">
+            <h3>Certification and Recognition</h3>
+            <p>Earn completion certificates and get recognized for your achievements.</p>
+        </div>
+    </div>
+    <div class="reviews">
+        <h2>Reviews</h2>
+        <p>Discover how CSExperience has helped our students advance their careers.</p>
+        <div class="testimonial active">
+            <blockquote>"CSExperience gave me the opportunity to work on real projects with a supportive team. It was a valuable experience that boosted my confidence and skills."</blockquote>
+            <cite>— Jane Doe</cite>
+        </div>
+        <div class="testimonial">
+            <blockquote>"The flexible internship duration allowed me to balance my studies while gaining practical experience. I highly recommend CSExperience to any student looking to enhance their resume."</blockquote>
+            <cite>— John Smith</cite>
+        </div>
+        <div class="testimonial">
+            <blockquote>"Working on live projects with industry experts was an eye-opening experience. It prepared me well for my future career in software development."</blockquote>
+            <cite>— Emily Johnson</cite>
+        </div>
+        <div class="controls">
+            <button id="prev" aria-label="Previous testimonial">&lt;</button>
+            <button id="next" aria-label="Next testimonial">&gt;</button>
+        </div>
+        <div class="indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+        </div>
+    </div>
+    <div class="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need more information, please fill out the form below to get in touch with us.</p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 CSExperience. All Rights Reserved.</p>
+        <div class="contact-icons">
+            <a href="https://www.facebook.com/profile.php?id=100095145721933&mibextid=rS40aB7S9Ucbxw6v"><img src="logo1.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/kingumar223?igsh=MWV3bWozb254MzJkMw=="><img src="logo2.avif" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/in/mohammed-umar-shaik-29a1ba274?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="logo3.webp" alt="LinkedIn"></a>
+            <a href="https://github.com/umarshaikreal"><img src="logo4.png" alt="GitHub"></a>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for Testimonials
+        const testimonials = document.querySelectorAll('.testimonial');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.classList.toggle('active', i === index);
+                indicators[i].classList.toggle('active', i === index);
+            });
+            currentTestimonial = index;
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            showTestimonial((currentTestimonial + 1) % testimonials.length);
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            showTestimonial((currentTestimonial - 1 + testimonials.length) % testimonials.length);
+        });
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => showTestimonial(index));
+        });
+    </script>
+</body>
+</html>
